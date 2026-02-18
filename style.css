@@ -1,0 +1,42 @@
+* {
+    text-decoration: none;
+}
+html, body{
+    margin: 0;
+    height: 100%;
+}
+
+.navbar{
+    background: white;
+    font-family: "DejaVu Sans", serif;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 40px;
+}
+.navdiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.content{
+    display:flex
+}
+.example{
+    padding-left: 300px;
+    padding-top: 200px
+}
+.logo{
+    font-size: 25px;
+    padding-top: 5px;
+    padding-left: 150px;
+    font-weight: 600;
+    color: black;
+}
+.login{
+    padding-left: 180px;
+    width: 300px;
+    padding-top: 150px;
+}
+.login_options{
+    display: grid;
+}
