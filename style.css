@@ -4,39 +4,67 @@
 html, body{
     margin: 0;
     height: 100%;
+    background: whitesmoke;
+
+    .content{
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        column-gap: 400px;
+        margin: 0;
+        .login{
+            width: 300px;
+            padding-top: 150px;
+            .login_options {
+                display: grid;
+                text-align: center;
+                width: 400px;
+            }
+            .login_button {
+
+            }
+        }
+        .login_screen_img_div{
+            background: ghostwhite;
+            .login_screen_img{
+                width: auto;
+                padding-top: 30%;
+                position: sticky;
+            }
+        }
+    }
+    .navdiv{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logo{
+            font-size: 25px;
+            padding-top: 5px;
+            padding-left: 150px;
+            font-weight: 600;
+            color: black;
+        }
+        .navbar {
+            background: white;
+            font-family: "DejaVu Sans", serif;
+            padding-right: 15px;
+            padding-left: 15px;
+            height: 40px;
+        }
+        .header_line{
+            background: lightgray;
+            height: 1px;
+        }
+    }
 }
 
-.navbar{
-    background: white;
-    font-family: "DejaVu Sans", serif;
-    padding-right: 15px;
-    padding-left: 15px;
-    height: 40px;
-}
-.navdiv{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.content{
-    display:flex
-}
-.example{
-    padding-left: 300px;
-    padding-top: 200px
-}
-.logo{
-    font-size: 25px;
-    padding-top: 5px;
-    padding-left: 150px;
-    font-weight: 600;
-    color: black;
-}
-.login{
-    padding-left: 180px;
-    width: 300px;
-    padding-top: 150px;
-}
-.login_options{
-    display: grid;
-}
+
+
+
+
+
+
+
+
+
+
