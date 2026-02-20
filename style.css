@@ -3,22 +3,18 @@
 }
 html, body{
     margin: 0;
-    height: 100%;
     background: whitesmoke;
-
     .content{
         display: flex;
         justify-content: center;
-        height: 100vh;
-        column-gap: 400px;
-        margin: 0;
+        width: 100%;
         .login{
-            width: 300px;
-            padding-top: 150px;
+            padding-top: 5%;
+            width: 50%;
+            justify-items: center;
             .login_options {
                 display: grid;
                 text-align: center;
-                width: 400px;
             }
             .login_button {
 
@@ -26,10 +22,12 @@ html, body{
         }
         .login_screen_img_div{
             background: ghostwhite;
+            width: 50%;
+            text-align: center;
+            overflow: hidden;
             .login_screen_img{
-                width: auto;
-                padding-top: 30%;
-                position: sticky;
+                margin-left: 130px;
+                padding-top: 15%;
             }
         }
     }
@@ -51,10 +49,10 @@ html, body{
             padding-left: 15px;
             height: 40px;
         }
-        .header_line{
-            background: lightgray;
-            height: 1px;
-        }
+    }
+    .header_line{
+        background: lightgray;
+        height: 0.1vh;
     }
 }
 
