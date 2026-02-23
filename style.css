@@ -3,7 +3,7 @@
 }
 html, body{
     margin: 0;
-    background: whitesmoke;
+    background: #fcffff;
     .content{
         display: flex;
         justify-content: center;
@@ -17,7 +17,10 @@ html, body{
                 text-align: center;
             }
             .login_button {
-
+                width: 400px;
+                border: none;
+                box-shadow: 0.1px 0.1px 0.1px 0 rgba(0, 0, 0, 0.2), 0 0.1px 1px 0 rgba(0, 0, 0, 0.19);
+                border-radius: 10px;
             }
         }
         .login_screen_img_div{
@@ -35,15 +38,21 @@ html, body{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background-color: white;
+        height: 40px;
+        box-sizing: border-box;
+        max-width: 100vw;
+        width: 100%;
+        direction: rtl;
         .logo{
             font-size: 25px;
-            padding-top: 5px;
-            padding-left: 150px;
             font-weight: 600;
             color: black;
+            margin-right: auto;
+            position: sticky;
+            padding-left: 20px;
         }
         .navbar {
-            background: white;
             font-family: "DejaVu Sans", serif;
             padding-right: 15px;
             padding-left: 15px;
