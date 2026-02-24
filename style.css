@@ -1,34 +1,72 @@
 * {
     text-decoration: none;
 }
-html, body{
+html, body {
     margin: 0;
-    background: #fcffff;
-    .content{
+    background: #f5f7f9;
+
+    .content {
         display: flex;
         justify-content: center;
         width: 100%;
-        .login{
+
+        .login {
             padding-top: 5%;
             width: 50%;
             justify-items: center;
+
             .login_options {
                 display: grid;
                 text-align: center;
+                .login_button {
+                    margin: auto;
+                    width: 370px;
+                    border: none;
+                    box-shadow: 0.1px 0.1px 0.1px 0 rgba(0, 0, 0, 0.2), 0 0.1px 1px 0 rgba(0, 0, 0, 0.19);
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    background-color: #e2e4e7;
+                }
+                .input_box{
+                    margin: auto;
+                    width: 370px;
+                    height: 37px;
+                    border: none;
+                    box-shadow: 0.1px 0.1px 0.1px 0 rgba(0, 0, 0, 0.2), 0 0.1px 1px 0 rgba(0, 0, 0, 0.19);
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    background-color: #ffffff;
+                }
+                .google_logo {
+                    position: absolute;
+                    width: 5%;
+                    height: 43%;
+                    left: 8px;
+                }
             }
-            .login_button {
-                width: 400px;
-                border: none;
-                box-shadow: 0.1px 0.1px 0.1px 0 rgba(0, 0, 0, 0.2), 0 0.1px 1px 0 rgba(0, 0, 0, 0.19);
-                border-radius: 10px;
+            .email_alternative{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .line_email_alternative{
+                width: 38%;
+                height: 1px;
+                background-color: #f0f2f5;
             }
         }
-        .login_screen_img_div{
+        .login_screen_img_div {
             background: ghostwhite;
             width: 50%;
             text-align: center;
             overflow: hidden;
-            .login_screen_img{
+            .login_screen_img {
                 margin-left: 130px;
                 padding-top: 15%;
             }
