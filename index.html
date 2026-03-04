@@ -33,16 +33,15 @@
                         <div class="line_email_alternative" style="left: 0"></div>
                     </div>
                     <p style="text-align: left">Email or username</p>
-                    <form>
-                        <input type="text" class="input_box">
+                    <form action="http://localhost:5255/login" method="post">
+                        <input type="text" class="input_box" required>
                         <p style="text-align: left">Password</p>
-                        <input type="text" class="input_box">
+                        <input type="password" class="input_box" required>
+                        <br>
+                        <button type="submit" class="login_button" style="background-color: #adb2b6">
+                        <p style="color: white">Login</p></button>
+                        <br>
                     </form>
-                    <br>
-                    <a href="login.html"><button class="login_button" style="background-color: #adb2b6">
-                        <p style="color: white">Login</p>
-                    </button></a>
-                    <br>
                     <a href="#" class="redirect_text">Forgot Password</a>
                     <p>New to Heavy? <a href="register" class="redirect_text">Sign Up</a></p>
                 </div>
