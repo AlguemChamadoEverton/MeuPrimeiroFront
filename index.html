@@ -32,13 +32,13 @@
                         <p class="text_email_alterative">Or with email</p>
                         <div class="line_email_alternative" style="left: 0"></div>
                     </div>
-                    <p style="text-align: left">Email or username</p>
-                    <form action="http://localhost:5255/login" method="post">
-                        <input type="text" class="input_box" required>
+                    <form id="form_login">
+                        <p style="text-align: left">Email or username</p>
+                        <input type="text" class="input_box" id="email_input" required>
                         <p style="text-align: left">Password</p>
-                        <input type="password" class="input_box" required>
+                        <input type="password" class="input_box" id="pass_input" required>
                         <br>
-                        <button type="submit" class="login_button" style="background-color: #adb2b6">
+                        <button onclick="loginFetch()" form="form_login" class="login_button" style="background-color: #adb2b6">
                         <p style="color: white">Login</p></button>
                         <br>
                     </form>
@@ -61,5 +61,6 @@
                 <p class="footer_text" style="margin-left: 10%">© 2026 Hevy Studios S.L. All right reserved.</p>
             </div>
         </footer>
+        <script src="index.js"></script>
 </body>
 </html>
