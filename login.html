@@ -38,8 +38,9 @@
                         <p style="text-align: left">Password</p>
                         <input type="password" class="input_box" id="pass_input" required>
                         <br>
-                        <button onclick="loginFetch()" form="form_login" class="login_button" style="background-color: #adb2b6">
+                        <button form="form_login" class="login_button" id="login_button" style="background-color: #adb2b6">
                         <p style="color: white">Login</p></button>
+                        <p id="incorrect" hidden="hidden">Invalid username, email, or password</p>
                         <br>
                     </form>
                     <a href="#" class="redirect_text">Forgot Password</a>
@@ -61,6 +62,6 @@
                 <p class="footer_text" style="margin-left: 10%">© 2026 Hevy Studios S.L. All right reserved.</p>
             </div>
         </footer>
-        <script src="index.js"></script>
+        <script type="module" src="index.js"></script>
 </body>
 </html>

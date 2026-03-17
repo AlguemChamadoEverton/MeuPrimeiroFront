@@ -58,6 +58,10 @@ html, body {
                     height: 43%;
                     left: 8px;
                 }
+                #incorrect{
+                    text-align: left;
+                    color: orangered;
+                }
             }
             .email_alternative{
                 display: flex;
