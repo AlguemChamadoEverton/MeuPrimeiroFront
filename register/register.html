@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Heavy - Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="register.css">
 </head>
 <body>
     <nav class="navbar">
@@ -15,16 +15,17 @@
         <div class="content">
             <div class="login">
                 <div class="login_options">
-                    <h1>Log In</h1>
+                    <h1>Sign Up</h1>
+                    <p>Create your Heavy account</p>
                     <br>
                     <button class="login_button">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/500px-Google_%22G%22_logo.svg.png" class="google_logo">
-                        <p class="box_text">Login with Google</p>
+                        <p class="box_text">Sign in with Google</p>
                     </button>
                     <br>
                     <button class="login_button">
                         <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" class="google_logo">
-                        <p class="box_text">Login with Apple</p>
+                        <p class="box_text">Sign in with Apple</p>
                     </button>
                     <br>
                     <div class="email_alternative">
@@ -33,22 +34,23 @@
                         <div class="line_email_alternative" style="left: 0"></div>
                     </div>
                     <form id="form_login">
-                        <p style="text-align: left">Email or username</p>
-                        <input type="text" class="input_box" id="email_input" required>
+                        <p style="text-align: left">Email</p>
+                        <input type="text" class="input_box" id="email_input" required="required">
+                        <p class="incorrect" hidden="hidden">Invalid username, email, or password</p>
                         <p style="text-align: left">Password</p>
-                        <input type="password" class="input_box" id="pass_input" required>
+                        <input type="password" class="input_box" id="pass_input" required="required">
+                        <p class="incorrect" hidden="hidden">Invalid username, email, or password</p>
                         <br>
                         <button form="form_login" class="login_button" id="login_button" style="background-color: #adb2b6">
-                        <p style="color: white">Login</p></button>
-                        <p id="incorrect" hidden="hidden">Invalid username, email, or password</p>
+                        <p style="color: white">Sign up</p></button>
                         <br>
                     </form>
-                    <a href="#" class="redirect_text">Forgot Password</a>
-                    <p>New to Heavy? <a href="register" class="redirect_text">Sign Up</a></p>
+                    <p class="agree">By creating an account, you agree to Hevy's <a class="redirect_text" style="color: #3d46f2" href="terms.html"> terms & conditions</a> and<br><a class="redirect_text" style="color: #3d46f2" href="privacy.html">privacy policy</a>.</p>
+                    <p>Already have an account? <a href="/MeuPrimeiroFront/login/login.html" class="redirect_text">Login</a></p>
                 </div>
             </div>
             <div class="login_screen_img_div">
-                <img class="login_screen_img" src="https://comandogeek.com.br/blog/wp-content/uploads/2025/06/bersek.png">
+                <img class="login_screen_img" src="https://hevy.com/images/login-hero.png">
             </div>
         </div>
         <footer class="footer">
@@ -62,6 +64,6 @@
                 <p class="footer_text" style="margin-left: 10%">© 2026 Hevy Studios S.L. All right reserved.</p>
             </div>
         </footer>
-        <script type="module" src="index.js"></script>
+        <script type="module" src="register.js"></script>
 </body>
 </html>

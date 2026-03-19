@@ -78,20 +78,24 @@ html, body {
                 height: 1px;
                 background-color: #f0f2f5;
             }
+            .agree {
+                text-align: left;
+                font-size: 12px;
+            }
         }
         .redirect_text{
             text-decoration: underline;
             color: #008bfd;
         }
         .login_screen_img_div {
-            background: ghostwhite;
+            background: #f0f2f5;
             width: 50vw;
-            max-height: 2000px;
+            max-height: 1500px;
             text-align: center;
             overflow: hidden;
             .login_screen_img {
-                margin-left: 130px;
                 padding-top: 15%;
+                width: 1500px;
             }
         }
     }

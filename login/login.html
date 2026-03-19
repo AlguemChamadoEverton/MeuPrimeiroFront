@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heavy - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a>HEAVY</a></div>
+        </div>
+    </nav>
+    <div class="header_line"></div>
+        <div class="content">
+            <div class="login">
+                <div class="login_options">
+                    <h1>Log In</h1>
+                    <br>
+                    <button class="login_button">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/500px-Google_%22G%22_logo.svg.png" class="google_logo">
+                        <p class="box_text">Login with Google</p>
+                    </button>
+                    <br>
+                    <button class="login_button">
+                        <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" class="google_logo">
+                        <p class="box_text">Login with Apple</p>
+                    </button>
+                    <br>
+                    <div class="email_alternative">
+                        <div class="line_email_alternative"></div>
+                        <p class="text_email_alterative">Or with email</p>
+                        <div class="line_email_alternative" style="left: 0"></div>
+                    </div>
+                    <form id="form_login">
+                        <p style="text-align: left">Email or username</p>
+                        <input type="text" class="input_box" id="email_input" required="required">
+                        <p style="text-align: left">Password</p>
+                        <input type="password" class="input_box" id="pass_input" required="required">
+                        <br>
+                        <button form="form_login" class="login_button" id="login_button" style="background-color: #adb2b6">
+                        <p style="color: white">Login</p></button>
+                        <p id="incorrect" hidden="hidden">Invalid username, email, or password</p>
+                        <br>
+                    </form>
+                    <a href="#" class="redirect_text">Forgot Password</a>
+                    <p>New to Heavy? <a href="register" class="redirect_text">Sign Up</a></p>
+                </div>
+            </div>
+            <div class="login_screen_img_div">
+                <img class="login_screen_img" src="https://hevy.com/images/login-hero.png">
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="redirects">
+                <a class="footer_text" href="terms.html">Terms & Conditions</a>
+                <a class="footer_text" href="pricing.html">Pricing</a>
+                <a class="footer_text" href="privacy.html">Privacy Policy</a>
+                <a class="footer_text" href="contact.html">Contact Us</a>
+            </div>
+            <div class="heavy">
+                <p class="footer_text" style="margin-left: 10%">© 2026 Hevy Studios S.L. All right reserved.</p>
+            </div>
+        </footer>
+        <script type="module" src="login.js"></script>
+</body>
+</html>

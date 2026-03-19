@@ -1,0 +1,162 @@
+* {
+    text-decoration: none;
+}
+html, body {
+    margin: 0;
+    background: #f5f7f9;
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    .teste{
+        display: flex;
+        overflow: hidden;
+    }
+    .content {
+        display: flex;
+        justify-content: center;
+        width: auto;
+        min-height: 1300px;
+        height: calc(100vh - 120px);
+        position: relative;
+        .login {
+            padding-top: 5%;
+            width: 50vw;
+            justify-items: center;
+
+            .login_options {
+                display: grid;
+                text-align: center;
+                .login_button {
+                    margin: auto;
+                    width: 100%;
+                    border: none;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    background-color: #e2e4e7;
+                }
+                .input_box{
+                    margin: auto;
+                    width: 370px;
+                    height: 37px;
+                    border-style: solid;
+                    border-color: #e2e4e7;
+                    border-width: 1px;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    background-color: #ffffff;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                .google_logo {
+                    position: absolute;
+                    width: 5%;
+                    height: 43%;
+                    left: 8px;
+                }
+                #incorrect{
+                    text-align: left;
+                    color: orangered;
+                }
+            }
+            .email_alternative{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .text_email_alterative{
+                color: #82888e;
+                margin-left: 3px;
+                margin-right: 3px;
+            }
+            .line_email_alternative {
+                width: 36%;
+                height: 1px;
+                background-color: #f0f2f5;
+            }
+        }
+        .redirect_text{
+            text-decoration: underline;
+            color: #008bfd;
+        }
+        .login_screen_img_div {
+            background: #f0f2f5;
+            width: 50vw;
+            max-height: 1500px;
+            text-align: center;
+            overflow: hidden;
+            .login_screen_img {
+                padding-top: 15%;
+                width: 1500px;
+            }
+        }
+    }
+    .navdiv{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        height: 60px;
+        box-sizing: border-box;
+        max-width: 100vw;
+        width: 100%;
+        direction: rtl;
+        .logo{
+            font-size: 25px;
+            font-weight: 600;
+            color: black;
+            margin-right: auto;
+            position: sticky;
+            padding-left: 20px;
+        }
+        .navbar {
+            font-family: "DejaVu Sans", serif;
+            padding-right: 15px;
+            padding-left: 15px;
+            height: 40px;
+        }
+    }
+    .header_line{
+        background: #f0f2f5;
+        height: 0.2vh;
+    }
+    .footer{
+        position: relative;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        background-color: white;
+        max-width: 100vw;
+        width: 100%;
+        height: 60px;
+        .heavy{
+            width: 50vw;
+            position: relative;
+        }
+        .redirects{
+            position: relative;
+            width: 50vw;
+            justify-content: right;
+            display: flex;
+            gap: 2.5%;
+        }
+        .footer_text{
+            color: #404040;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
