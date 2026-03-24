@@ -37,7 +37,7 @@ function button_change() {
         loginButton.style.backgroundColor = "#008bfd";
     }
     else{
-        loginButton.style.backgroundColor = "#e2e4e7";
+        loginButton.style.backgroundColor = "#acb1b5";
     }
 }
 

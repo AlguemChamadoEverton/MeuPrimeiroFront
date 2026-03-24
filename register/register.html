@@ -34,12 +34,15 @@
                         <div class="line_email_alternative" style="left: 0"></div>
                     </div>
                     <form id="form_login">
+                        <p style="text-align: left">Username</p>
+                        <input type="text" class="input_box" id="user_input" required="required">
+                        <p class="incorrect" id="userInvalid" hidden="hidden"><img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" class="x_img"> Username is not valid</p>
                         <p style="text-align: left">Email</p>
                         <input type="text" class="input_box" id="email_input" required="required">
-                        <p class="incorrect" hidden="hidden">Invalid username, email, or password</p>
+                        <p class="incorrect" id="emailInvalid" hidden="hidden"><img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" class="x_img"> Email is not valid</p>
                         <p style="text-align: left">Password</p>
                         <input type="password" class="input_box" id="pass_input" required="required">
-                        <p class="incorrect" hidden="hidden">Invalid username, email, or password</p>
+                        <p class="incorrect" id="passInvalid" hidden="hidden"><img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" class="x_img"> Password must be greater than 6 characters</p>
                         <br>
                         <button form="form_login" class="login_button" id="login_button" style="background-color: #adb2b6">
                         <p style="color: white">Sign up</p></button>

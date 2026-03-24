@@ -58,9 +58,13 @@ html, body {
                     height: 43%;
                     left: 8px;
                 }
-                #incorrect{
+                .incorrect{
                     text-align: left;
                     color: orangered;
+                    font-size: 10px;
+                }
+                .x_img{
+                    width: 13px;
                 }
             }
             .email_alternative{
