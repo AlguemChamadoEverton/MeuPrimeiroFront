@@ -1,6 +1,6 @@
 export default async function registerFetch() {
 
-    const email = document.getElementById("email_input");
+    let email = document.getElementById("email_input");
     let pass = document.getElementById("pass_input");
     let user = document.getElementById("user_input");
     const url = "http://localhost:5255/";
@@ -9,8 +9,12 @@ export default async function registerFetch() {
     let emailIsValid = emailRegex.test(email.value.toLowerCase());
     let passIsValid = (pass.value.length > 5 && pass.value.length < 21);
     let userIsValid = userRegex.test(user.value)
+    let emailInvalid = document.getElementById("emailInvalid");
+    let passInvalid = document.getElementById("passInvalid");
+    let userInvalid = document.getElementById("userInvalid");
 
     if (emailIsValid && passIsValid && userIsValid) {
+        inputValid([userInvalid,passInvalid,emailInvalid], [email,pass,user])
         const response = await fetch(`${url}register`, {
             method: "POST",
             headers: {
@@ -32,39 +36,51 @@ export default async function registerFetch() {
         }
     }
     else {
-        let emailInvalid = document.getElementById("emailInvalid");
-        let passInvalid = document.getElementById("passInvalid");
-        let userInvalid = document.getElementById("userInvalid");
         if(!userIsValid){
-            userInvalid.removeAttribute("hidden");
-            email.style.border = "10px solid red"
+            inputInvalid(userInvalid,user);
         }
         if(!emailIsValid){
-            emailInvalid.removeAttribute("hidden")
-            email.style.borderWidth = "thick"
-            email.style.border = "red";
+            inputInvalid(emailInvalid,email);
         }
         if(!passIsValid){
-            passInvalid.removeAttribute("hidden")
-            email.style.borderWidth = "thick"
-            email.style.border = "red";
+            inputInvalid(passInvalid,pass);
         }
     }
 }
+function inputInvalid(warning, element) {
+    warning.removeAttribute("hidden");
+    element.classList.replace("input_box","input_box_error");
+}
+function inputValid(warning, element) {
+    for (let i = 0; i < 3; i++) {
+        warning[i].setAttribute("hidden","hidden");
+        element[i].classList.replace("input_box_error","input_box");
+    }
+}
+function registerButtonMouseIn(){
+    loginButton.style.backgroundColor = "#63b5ff";
+}
+function registerButtonMouseOut(){
+    loginButton.style.backgroundColor = "#0084f0";
+}
+async function register(event){
+    event.preventDefault();
+    await registerFetch();
+}
 function button_change() {
     if(email_input.value.length > 0 && pass_input.value.length > 0 && user_input.value.length > 0){
-        loginButton.style.backgroundColor = "#008bfd";
-
-        loginButton.addEventListener("mouseover", () =>
-        {
-            while() {
-                loginButton.style.backgroundColor = "#63b5ff";
-
-            }
-        });
+        loginButton.style.backgroundColor = "#0085f2";
+        loginButton.addEventListener("mouseover", registerButtonMouseIn);
+        loginButton.style.cursor = "pointer";
+        loginButton.addEventListener("mouseout", registerButtonMouseOut);
+        loginButton.addEventListener("click", register);
     }
     else{
+        loginButton.removeEventListener("mouseover", registerButtonMouseIn);
+        loginButton.removeEventListener("mouseout", registerButtonMouseOut)
         loginButton.style.backgroundColor = "#acb1b5";
+        loginButton.style.cursor = "";
+        loginButton.removeEventListener("click", register);
     }
 }
 
@@ -76,10 +92,3 @@ let user_input = document.getElementById("user_input");
 email_input.addEventListener("input", button_change);
 pass_input.addEventListener("input", button_change);
 user_input.addEventListener("input", button_change);
-
-if (loginButton) {
-    loginButton.addEventListener("click", async (event) => {
-        event.preventDefault();
-        await registerFetch();
-    });
-}

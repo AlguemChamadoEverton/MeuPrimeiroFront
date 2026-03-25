@@ -52,6 +52,22 @@ html, body {
                     padding-left: 10px;
                     padding-right: 10px;
                 }
+                .input_box_error{
+                    margin: auto;
+                    width: 370px;
+                    height: 37px;
+                    border-style: solid;
+                    border-color: #dc1d1d;
+                    border-width: 2px;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    background-color: #ffffff;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
                 .google_logo {
                     position: absolute;
                     width: 5%;
@@ -60,7 +76,7 @@ html, body {
                 }
                 .incorrect{
                     text-align: left;
-                    color: orangered;
+                    color: #fd4b4b;
                     font-size: 10px;
                 }
                 .x_img{
