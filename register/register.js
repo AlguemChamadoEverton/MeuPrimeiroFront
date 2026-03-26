@@ -1,20 +1,18 @@
+let emailInvalid = document.getElementById("emailInvalid");
+let passInvalid = document.getElementById("passInvalid");
+let userInvalid = document.getElementById("userInvalid");
+let email = document.getElementById("email_input");
+let pass = document.getElementById("pass_input");
+let user = document.getElementById("user_input");
 export default async function registerFetch() {
-
-    let email = document.getElementById("email_input");
-    let pass = document.getElementById("pass_input");
-    let user = document.getElementById("user_input");
     const url = "http://localhost:5255/";
     const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
     const userRegex = /^[0-9A-Za-z]{6,16}$/;
     let emailIsValid = emailRegex.test(email.value.toLowerCase());
     let passIsValid = (pass.value.length > 5 && pass.value.length < 21);
     let userIsValid = userRegex.test(user.value)
-    let emailInvalid = document.getElementById("emailInvalid");
-    let passInvalid = document.getElementById("passInvalid");
-    let userInvalid = document.getElementById("userInvalid");
 
     if (emailIsValid && passIsValid && userIsValid) {
-        inputValid([userInvalid,passInvalid,emailInvalid], [email,pass,user])
         const response = await fetch(`${url}register`, {
             method: "POST",
             headers: {
@@ -52,10 +50,8 @@ function inputInvalid(warning, element) {
     element.classList.replace("input_box","input_box_error");
 }
 function inputValid(warning, element) {
-    for (let i = 0; i < 3; i++) {
-        warning[i].setAttribute("hidden","hidden");
-        element[i].classList.replace("input_box_error","input_box");
-    }
+    warning.setAttribute("hidden","hidden");
+    element.classList.replace("input_box_error","input_box");
 }
 function registerButtonMouseIn(){
     loginButton.style.backgroundColor = "#63b5ff";
@@ -68,6 +64,15 @@ async function register(event){
     await registerFetch();
 }
 function button_change() {
+    if(email_input.value.length === 0) {
+        inputValid(emailInvalid, email);
+    }
+    if(user_input.value.length === 0) {
+        inputValid(userInvalid, user);
+    }
+    if(pass_input.value.length === 0) {
+        inputValid(passInvalid, pass);
+    }
     if(email_input.value.length > 0 && pass_input.value.length > 0 && user_input.value.length > 0){
         loginButton.style.backgroundColor = "#0085f2";
         loginButton.addEventListener("mouseover", registerButtonMouseIn);
