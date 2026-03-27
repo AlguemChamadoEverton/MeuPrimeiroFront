@@ -74,14 +74,28 @@ html, body {
                     height: 43%;
                     left: 8px;
                 }
-                .incorrect{
-                    text-align: left;
-                    color: #fd4b4b;
-                    font-size: 10px;
+                .error_box{
+                    overflow: hidden;
+                    word-wrap: break-word;
+                    min-height: 14px;
+                    max-height: 14px;
+                    display: none;
+                    align-items: center;
+                    position: relative;
+                    .incorrect{
+                        text-align: left;
+                        color: #fd4b4b;
+                        font-size: 10px;
+                    }
+                    .x_img {
+                        max-width: 100%;
+                        width: 13px;
+                        float: left;
+                        margin-right: 3px;
+                        object-fit: contain;
+                    }
                 }
-                .x_img{
-                    width: 13px;
-                }
+
             }
             .email_alternative{
                 display: flex;

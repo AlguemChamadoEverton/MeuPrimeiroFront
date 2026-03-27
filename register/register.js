@@ -1,6 +1,6 @@
-let emailInvalid = document.getElementById("emailInvalid");
-let passInvalid = document.getElementById("passInvalid");
-let userInvalid = document.getElementById("userInvalid");
+let emailInvalid = document.getElementById("error_email");
+let passInvalid = document.getElementById("error_password");
+let userInvalid = document.getElementById("error_username");
 let email = document.getElementById("email_input");
 let pass = document.getElementById("pass_input");
 let user = document.getElementById("user_input");
@@ -46,11 +46,11 @@ export default async function registerFetch() {
     }
 }
 function inputInvalid(warning, element) {
-    warning.removeAttribute("hidden");
+    warning.style.display = "inline";
     element.classList.replace("input_box","input_box_error");
 }
 function inputValid(warning, element) {
-    warning.setAttribute("hidden","hidden");
+    warning.style.display = "none";
     element.classList.replace("input_box_error","input_box");
 }
 function registerButtonMouseIn(){
