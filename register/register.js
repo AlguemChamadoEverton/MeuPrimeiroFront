@@ -10,7 +10,7 @@ export default async function registerFetch() {
     const userRegex = /^[0-9A-Za-z]{6,16}$/;
     let emailIsValid = emailRegex.test(email.value.toLowerCase());
     let passIsValid = (pass.value.length > 5 && pass.value.length < 21);
-    let userIsValid = userRegex.test(user.value)
+    let userIsValid = userRegex.test(user.value);
 
     if (emailIsValid && passIsValid && userIsValid) {
         const response = await fetch(`${url}register`, {
