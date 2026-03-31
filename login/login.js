@@ -22,7 +22,7 @@ export default async function loginFetch() {
             const data = await response.json();
             const key = data.toString();
             cookies.set("jwt_authorization", key);
-            window.location = "/MeuPrimeiroFront/index/index.html";
+            window.location = "../index/home.html";
         } else if(response.status === 400){
             console.log(await response.json())
         }
