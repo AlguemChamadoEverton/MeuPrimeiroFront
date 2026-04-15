@@ -1,3 +1,4 @@
+
 .page_main{
     padding-top: 25px;
     background-color: #000000;
@@ -37,23 +38,20 @@
 .profile{
     display: flex;
     flex-direction: column;
-    align-items: center;
+
     border-radius: 10px;
     width: 330px;
     height: 385px;
     background-color: #161618;
-    gap: 15px;
 }
 #float_profile_content{
-    margin-top: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 #float_panel_pic{
-    margin-bottom: 10px;
-    width: 60px;
-    border-radius: 60px;
+    width: 30px;
+    height: 30px;
 }
 .suggestions{
     border-radius: 10px;
@@ -93,7 +91,7 @@
 #workout_routinename{
     color: white;
 }
-.log{
+#log{
     display: flex;
     align-items: center;
     gap: 30px;
