@@ -69,14 +69,18 @@
     margin-top: 20px;
     gap: 20px;
 }
-#log_profile_pic{
+.log_profile_pic{
     width: 50px;
+    height: 50px;
     border-radius: 50px;
 }
-#workout_user{
+.workout_user{
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 210px;
+    max-width: 210px;
+    overflow: hidden;
 }
 #workout_log_username{
     color: white;
@@ -204,4 +208,20 @@
 #suggestions_title{
     margin-top: 25px;
     margin-left: 20px;
+}
+#athletes{
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    padding-top: 5px;
+    gap: 18px;
+}
+.follow{
+    padding-left: 20px;
+    color: #3674f0;
+    font-size: 15px;
+}
+.users{
+    display: flex;
+    align-items: center;
 }
