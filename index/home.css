@@ -78,8 +78,8 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    width: 210px;
-    max-width: 210px;
+    width: 221px;
+    max-width: 221px;
     overflow: hidden;
 }
 #workout_log_username{
@@ -217,7 +217,7 @@
     gap: 18px;
 }
 .follow{
-    padding-left: 20px;
+    padding-left: 10px;
     color: #3674f0;
     font-size: 15px;
 }
