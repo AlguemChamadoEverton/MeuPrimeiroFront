@@ -225,3 +225,25 @@
     display: flex;
     align-items: center;
 }
+.search_result{
+    position: absolute;
+    border-radius: 10px;
+    top: 125px;
+    left: 15px;
+    background-color: black;
+    width: 300px;
+    min-height: 70px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.search_result{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+}
+.results{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
