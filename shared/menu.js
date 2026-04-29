@@ -1,7 +1,7 @@
 const nav_buttons = document.getElementsByClassName("nav_button");
 let search_result = document.getElementsByClassName("results");
 let search_users = document.getElementById("search_user_global");
-
+const url = "http://localhost:5255/";
 
 search_users.addEventListener("input", searchUsers)
 
@@ -19,7 +19,6 @@ export async function searchUsers(event) {
     if (input.value.length > 2) {
         let nameSearched = input.value.toString()
         result_box.style.visibility = "visible";
-        const url = "http://localhost:5255/";
         //Lança a query pro backend, para cada resultado do meu json criar um elemento div, se não tiver nenhum, retorna cant find
         const response = await fetch(`${url}users`, {
             method: "POST",
@@ -34,6 +33,9 @@ export async function searchUsers(event) {
         if(response.ok){
             data.users.forEach(user => {
                 //quero que crie uma string com base no template e complete as informações
+                let searchResult = document.getElementById("tpl_ok").content.cloneNode(true);
+                searchResult.children[1].textContent = `${user.Username}`;
+                result_box.append(searchResult);
             })
         }
         else if(response.status === 404){
