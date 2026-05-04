@@ -1,5 +1,4 @@
 const nav_buttons = document.getElementsByClassName("nav_button");
-let search_result = document.getElementsByClassName("results");
 let search_users = document.getElementById("search_user_global");
 const url = "http://localhost:5255/";
 
@@ -15,10 +14,11 @@ for (let i = 0; i < nav_buttons.length; i++){
 
 export async function searchUsers(event) {
     let input = event.currentTarget;
-    let result_box = document.getElementById("search_result");
+    let resultBox = document.getElementById("search_result");
+    let searchLoader = document.getElementById("search_loader");
     if (input.value.length > 2) {
         let nameSearched = input.value.toString()
-        result_box.style.visibility = "visible";
+        resultBox.style.visibility = "visible";
         //Lança a query pro backend, para cada resultado do meu json criar um elemento div, se não tiver nenhum, retorna cant find
         const response = await fetch(`${url}users`, {
             method: "POST",
@@ -31,24 +31,28 @@ export async function searchUsers(event) {
         })
         let data = await response.json();
         if(response.ok){
+            searchLoader.style.visibility = "hidden"
+            resultBox.textContent = '';
             data.users.forEach(user => {
                 //quero que crie uma string com base no template e complete as informações
                 let searchResult = document.getElementById("tpl_ok").content.cloneNode(true);
                 searchResult.children[1].textContent = `${user.Username}`;
-                result_box.append(searchResult);
+                resultBox.append(searchResult);
             })
         }
         else if(response.status === 404){
+            searchLoader.style.visibility = "hidden"
             let cNameSearched = document.getElementById("tpl_not_found").content.cloneNode(true);
             cNameSearched.children[0].textContent = `Can't find "${nameSearched}"`
-            result_box.append(cNameSearched);
+            resultBox.textContent = '';
+            resultBox.append(cNameSearched);
         }
         else{
             console.log("AAAAAAAAAAAAAAAAAAAAA");
         }
     }
     else{
-        result_box.style.visibility = "hidden";
+        resultBox.style.visibility = "hidden";
     }
 }
 export function menuHoverChangeColor(event){
