@@ -2,6 +2,7 @@ const nav_buttons = document.getElementsByClassName("nav_button");
 let search_users = document.getElementById("search_user_global");
 const url = "http://localhost:5255/";
 
+
 search_users.addEventListener("input", searchUsers)
 
 for (let i = 0; i < nav_buttons.length; i++){
