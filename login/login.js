@@ -18,11 +18,11 @@ export default async function loginFetch() {
                 "PasswordHash": pass_input.value.toLowerCase()
             })
         })
-        if (response.ok) {
+        if (response.ok){
             const data = await response.json();
             const key = data.toString();
-            cookies.set("jwt_authorization", key);
-            window.location = "../index/home.html";
+            cookies.set("jwt_authorization", key, { path: '/' });
+            window.location = "http://localhost:63342/MeuPrimeiroFront/index/home.html?_ijt=53be0nru7hq3p8md6ic6vqghan&_ij_reload=RELOAD_ON_CHANGE";
         } else if(response.status === 400){
             console.log(await response.json())
         }
