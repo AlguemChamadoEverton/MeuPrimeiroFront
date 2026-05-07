@@ -7,6 +7,7 @@
     gap: 25px;
 }
 .home{
+    min-width: 690px;
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;

@@ -11,9 +11,17 @@ const response = await fetch(`${url}workouts`, {
         'Authorization': `Bearer ${token}`
     },
 })
+const noActivity = document.getElementById("no_activity");
 if(response.ok){
     let data = await response.json();
+    data.workouts.forEach(workout => {
+        let workout_template = document.getElementById("workout").content.cloneNode(true);
+        workout_template.children[0].children[]
+    })
 }
 else if(response.status === 404){
-    
+    noActivity.style.display = "";
+}
+else{
+    noActivity.style.display = "";
 }
