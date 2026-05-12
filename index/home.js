@@ -26,16 +26,18 @@ if(response.ok){
         let exercises = workout.exercises;
         let m = exercises.length < 3 ? exercises.length : 3; 
         for(let i = 0; i < m; i++){
-            workout_template.querySelector('.exercise_img')
-            workout_template.querySelector('.exercise_text')
-            workout_ //estava um pouco cansado travei, mas o pensamento é de que quero fazer o resumo com tres exercicios do workout,
-            // mas preciso clonar os elementos que geram o exercise e não sei como fazer isso
+            workout_template.querySelector('.exercise_img');
+            workout_template.querySelector('.exercise_text');
+            let exercise_template = document.getElementsByClassName('.exercise')[0].cloneNode(true);
+            exercise_template.querySelector('.exercise_img').src = exercises[i].image;
+            exercise_template.querySelector('.exercise_text').textContent = exercises[i].name;
+            workout_template.appendChild(exercise_template);
         }
-        
-        workout.exercises.forEach(exercise => {
-            workout_template.querySelector('#exercises_summary')
-            workout_
-        })
+        if(exercises.length > 3){
+            workout_template.querySelector('#exercises_more').display = "";
+        }
+        //Acrescentar depois o chat (vou precisar de mais um endpoint)
+        document.getElementsByClassName("home")[0].appendChild(workout_template);
     });
 }
 else if(response.status === 404){
