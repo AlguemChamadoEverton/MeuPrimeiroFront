@@ -4,18 +4,103 @@ const url = "http://localhost:5255/";
 let cookies = new Cookies();
 const token = cookies.get('jwt_authorization');
 
-const response = await fetch(`${url}workouts`, {
+/*const response = await fetch(`${url}workouts`, {
     method: "GET",
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
     },
-})
+}) codigo oficial*/
+
+const response = `
+{
+    "workouts": 
+    [
+        {
+            "image": "https://i.pinimg.com/736x/b4/0c/c5/b40cc599980b8b0a944d304e205c6fa0.jpg",
+            "username": "Xestro",
+            "data": "12/05/2026",
+            "name": "Maluquisse",
+            "duration": "1h30m",
+            "volume": "8000kg",
+            "records": 3,
+            "exercises": 
+            [
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Deadlift"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Squat"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Bench Press"
+                }
+            ]
+        },
+        {
+            "image": "https://i.pinimg.com/736x/b4/0c/c5/b40cc599980b8b0a944d304e205c6fa0.jpg",
+            "username": "Xestro",
+            "data": "13/05/2026",
+            "name": "Maluquaisse",
+            "duration": "1h35m",
+            "volume": "8005kg",
+            "records": 10,
+            "exercises": 
+            [
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Deadlift"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Squat"
+                }
+            ]
+        },
+        {
+            "image": "https://i.pinimg.com/736x/b4/0c/c5/b40cc599980b8b0a944d304e205c6fa0.jpg",
+            "username": "Xestro",
+            "data": "13/05/2026",
+            "name": "Maluquaisse",
+            "duration": "1h35m",
+            "volume": "8005kg",
+            "records": 10,
+            "exercises": 
+            [
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Deadlift"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Squat"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Squat"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Squat"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Squat"
+                }
+            ]
+        }
+    ]
+}`;
+
 const noActivity = document.getElementById("no_activity");
-if(response.ok){
-    let data = await response.json();
+if(1 === 1){
+    //let data = await response.json(); desativado para mock
+    let data = JSON.parse(response);
+    let workout_template = document.getElementById("workout").content.cloneNode(true);
     data.workouts.forEach(workout => {
-        let workout_template = document.getElementById("workout").content.cloneNode(true);
         workout_template.querySelector('.log_profile_pic').src = workout.image;
         workout_template.querySelector('#workout_log_username').textContent = workout.username;
         workout_template.querySelector('.workout_data').textContent = workout.data;
@@ -24,25 +109,24 @@ if(response.ok){
         workout_template.querySelector('#volume_value').textContent = workout.volume;
         workout_template.querySelector('#records_value').textContent = workout.records;
         let exercises = workout.exercises;
-        let m = exercises.length < 3 ? exercises.length : 3; 
+        let m = exercises.length < 3 ? exercises.length : 3;
+        let exercise_template = document.getElementById("exercises").content.cloneNode(true);// isso ta dando erro por algum motivo
         for(let i = 0; i < m; i++){
-            workout_template.querySelector('.exercise_img');
-            workout_template.querySelector('.exercise_text');
-            let exercise_template = document.getElementsByClassName('.exercise')[0].cloneNode(true);
             exercise_template.querySelector('.exercise_img').src = exercises[i].image;
             exercise_template.querySelector('.exercise_text').textContent = exercises[i].name;
             workout_template.appendChild(exercise_template);
         }
         if(exercises.length > 3){
-            workout_template.querySelector('#exercises_more').display = "";
+            workout_template.querySelector('#exercises_more').style.display = "";
         }
         //Acrescentar depois o chat (vou precisar de mais um endpoint)
         document.getElementsByClassName("home")[0].appendChild(workout_template);
     });
 }
-else if(response.status === 404){
+
+/*else if(response.status === 404){
     noActivity.style.display = "";
 }
 else{
     noActivity.style.display = "";
-}
+}*/
