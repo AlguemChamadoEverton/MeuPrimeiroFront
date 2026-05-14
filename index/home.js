@@ -100,7 +100,10 @@ if(1 === 1){
     //let data = await response.json(); desativado para mock
     let data = JSON.parse(response);
     let workout_template = document.getElementById("workout").content.cloneNode(true);
+    let exercise_template = document.getElementById("exercises").content.cloneNode(true);// isso ta dando erro por algum motivo
+    let seeMore;
     data.workouts.forEach(workout => {
+        workout_template = document.getElementById("workout").content.cloneNode(true);
         workout_template.querySelector('.log_profile_pic').src = workout.image;
         workout_template.querySelector('#workout_log_username').textContent = workout.username;
         workout_template.querySelector('.workout_data').textContent = workout.data;
@@ -110,14 +113,16 @@ if(1 === 1){
         workout_template.querySelector('#records_value').textContent = workout.records;
         let exercises = workout.exercises;
         let m = exercises.length < 3 ? exercises.length : 3;
-        let exercise_template = document.getElementById("exercises").content.cloneNode(true);// isso ta dando erro por algum motivo
         for(let i = 0; i < m; i++){
+            exercise_template = document.getElementById("exercises").content.cloneNode(true);
             exercise_template.querySelector('.exercise_img').src = exercises[i].image;
-            exercise_template.querySelector('.exercise_text').textContent = exercises[i].name;
-            workout_template.appendChild(exercise_template);
+            console.log(exercise_template.querySelector('.exercise_img').src); //teste
+            exercise_template.querySelector('.exercise_text').textContent = exercises[i].name
+            workout_template.querySelector('#exercises_summary').appendChild(exercise_template);
         }
         if(exercises.length > 3){
-            workout_template.querySelector('#exercises_more').style.display = "";
+            seeMore = document.getElementById('see_more').content.cloneNode(true);
+            workout_template.querySelector('#exercises_summary').appendChild(seeMore);
         }
         //Acrescentar depois o chat (vou precisar de mais um endpoint)
         document.getElementsByClassName("home")[0].appendChild(workout_template);
