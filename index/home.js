@@ -40,6 +40,33 @@ const response = `
                     "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
                     "name": "Bench Press"
                 }
+            ],
+            "commentaries":
+            [
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
+                    "username": "rafinha",
+                    "time": "Yesterday at 6:07 AM",
+                    "commentary": "Oiiiiiiiiiiiiiiiii"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
+                    "username": "sofi",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "legal"
+                },
+                {
+                    "image": "a",
+                    "username": "b",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "macaco"
+                },
+                {
+                    "image": "j",
+                    "username": "k",
+                    "time": "Dec 30, 2024, 12:38PM",
+                    "commentary": "tigre"
+                }
             ]
         },
         {
@@ -61,6 +88,33 @@ const response = `
                 {
                     "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
                     "name": "Squat"
+                }
+            ],
+            "commentaries":
+            [
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
+                    "username": "rafinha",
+                    "time": "Yesterday at 6:07 AM",
+                    "commentary": "Oiiiiiiiiiiiiiiiii"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
+                    "username": "sofi",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "legal"
+                },
+                {
+                    "image": "a",
+                    "username": "b",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "macaco"
+                },
+                {
+                    "image": "j",
+                    "username": "k",
+                    "time": "Dec 30, 2024, 12:38PM",
+                    "commentary": "tigre"
                 }
             ]
         },
@@ -96,8 +150,34 @@ const response = `
                     "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
                     "name": "Squat"
                 }
+            ],
+            "commentaries":
+            [
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
+                    "username": "rafinha",
+                    "time": "Yesterday at 6:07 AM",
+                    "commentary": "Oiiiiiiiiiiiiiiiii"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
+                    "username": "sofi",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "legal"
+                },
+                {
+                    "image": "a",
+                    "username": "b",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "macaco"
+                },
+                {
+                    "image": "j",
+                    "username": "k",
+                    "time": "Dec 30, 2024, 12:38PM",
+                    "commentary": "tigre"
+                }
             ]
-            
         }
     ]
 }`;
@@ -107,9 +187,9 @@ if(1 === 1){
     //let data = await response.json(); desativado para mock
     let data = JSON.parse(response);
     let workout_template = document.getElementById("workout").content.cloneNode(true);
-    let exercise_template = document.getElementById("exercises").content.cloneNode(true);// isso ta dando erro por algum motivo
-    let seeMore;
-    let exercises;
+    let exercise_template = document.getElementById("exercises").content.cloneNode(true);
+    let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
+    let seeMore, exercises;
     data.workouts.forEach(workout => {
         workout_template = document.getElementById("workout").content.cloneNode(true);
         workout_template.querySelector('.log_profile_pic').src = workout.image;
@@ -123,9 +203,8 @@ if(1 === 1){
         workout_template.querySelector('#comments_count').textContent = workout.comments;
         exercises = workout.exercises;
         let exerciseLength = exercises.length;
-        let m = exerciseLength < 3 ? exerciseLength  : 3;
+        let m = exerciseLength < 3 ? exerciseLength : 3;
         for(let i = 0; i < m; i++){
-            exercise_template = document.getElementById("exercises").content.cloneNode(true);
             exercise_template.querySelector('.exercise_img').src = exercises[i].image;
             console.log(exercise_template.querySelector('.exercise_img').src); //teste
             exercise_template.querySelector('.exercise_text').textContent = exercises[i].name;
@@ -135,6 +214,12 @@ if(1 === 1){
             seeMore = document.getElementById('see_more').content.cloneNode(true);
             seeMore.querySelector('#exercises_more').textContent = `See ${exerciseLength-3} more exercises`;
             workout_template.querySelector('#exercises_summary').appendChild(seeMore);
+        }
+        let commentaries = workout.commentaries;
+        let commentariesLength = commentaries.length;
+        let n = commentariesLength < 2 ? commentariesLength : 2;
+        for(let j = 0; j < m; j++){
+            comment_template.querySelector('')
         }
         //Acrescentar depois o chat (vou precisar de mais um endpoint)
         document.getElementsByClassName("home")[0].appendChild(workout_template);
