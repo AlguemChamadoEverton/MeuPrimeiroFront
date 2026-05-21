@@ -56,13 +56,13 @@ const response = `
                     "commentary": "legal"
                 },
                 {
-                    "image": "a",
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
                     "username": "b",
                     "time": "Dec 25, 2024, 12:30PM",
                     "commentary": "macaco"
                 },
                 {
-                    "image": "j",
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
                     "username": "k",
                     "time": "Dec 30, 2024, 12:38PM",
                     "commentary": "tigre"
@@ -94,7 +94,7 @@ const response = `
             [
                 {
                     "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
-                    "username": "rafinha",
+                    "username": "rafi",
                     "time": "Yesterday at 6:07 AM",
                     "commentary": "Oiiiiiiiiiiiiiiiii"
                 },
@@ -105,13 +105,13 @@ const response = `
                     "commentary": "legal"
                 },
                 {
-                    "image": "a",
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
                     "username": "b",
                     "time": "Dec 25, 2024, 12:30PM",
                     "commentary": "macaco"
                 },
                 {
-                    "image": "j",
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
                     "username": "k",
                     "time": "Dec 30, 2024, 12:38PM",
                     "commentary": "tigre"
@@ -157,7 +157,7 @@ const response = `
                     "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
                     "username": "rafinha",
                     "time": "Yesterday at 6:07 AM",
-                    "commentary": "Oiiiiiiiiiiiiiiiii"
+                    "commentary": "Oiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
                 },
                 {
                     "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
@@ -166,16 +166,10 @@ const response = `
                     "commentary": "legal"
                 },
                 {
-                    "image": "a",
+                    "image": "https://lh3.googleusercontent.com/a/ACg8ocLVkw5rPXMrpfIPv12qQp9tCNPj7Au1yNkVEEbESWRxy4rRDndkeA=s96-c",
                     "username": "b",
                     "time": "Dec 25, 2024, 12:30PM",
                     "commentary": "macaco"
-                },
-                {
-                    "image": "j",
-                    "username": "k",
-                    "time": "Dec 30, 2024, 12:38PM",
-                    "commentary": "tigre"
                 }
             ]
         }
@@ -187,9 +181,8 @@ if(1 === 1){
     //let data = await response.json(); desativado para mock
     let data = JSON.parse(response);
     let workout_template = document.getElementById("workout").content.cloneNode(true);
-    let exercise_template = document.getElementById("exercises").content.cloneNode(true);
-    let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
-    let seeMore, exercises;
+    let exercises;
+    let seeMore;
     data.workouts.forEach(workout => {
         workout_template = document.getElementById("workout").content.cloneNode(true);
         workout_template.querySelector('.log_profile_pic').src = workout.image;
@@ -205,12 +198,12 @@ if(1 === 1){
         let exerciseLength = exercises.length;
         let m = exerciseLength < 3 ? exerciseLength : 3;
         for(let i = 0; i < m; i++){
+            let exercise_template = document.getElementById("exercises").content.cloneNode(true);
             exercise_template.querySelector('.exercise_img').src = exercises[i].image;
-            console.log(exercise_template.querySelector('.exercise_img').src); //teste
             exercise_template.querySelector('.exercise_text').textContent = exercises[i].name;
             workout_template.querySelector('#exercises_summary').appendChild(exercise_template);
         }
-        if(exercises.length > 3){
+        if(exerciseLength > 3){
             seeMore = document.getElementById('see_more').content.cloneNode(true);
             seeMore.querySelector('#exercises_more').textContent = `See ${exerciseLength-3} more exercises`;
             workout_template.querySelector('#exercises_summary').appendChild(seeMore);
@@ -218,10 +211,19 @@ if(1 === 1){
         let commentaries = workout.commentaries;
         let commentariesLength = commentaries.length;
         let n = commentariesLength < 2 ? commentariesLength : 2;
-        for(let j = 0; j < m; j++){
-            comment_template.querySelector('')
+        for(let j = 0; j < n; j++){
+            let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
+            comment_template.querySelector('#comment_user').textContent = commentaries[j].username;
+            comment_template.querySelector('#comment_profile_pic').src = commentaries[j].image;
+            comment_template.querySelector('.time_ago').textContent = commentaries[j].time;
+            comment_template.querySelector('#comment_text').textContent = commentaries[j].commentary;
+            workout_template.querySelector('#comment').appendChild(comment_template);
         }
-        //Acrescentar depois o chat (vou precisar de mais um endpoint)
+        if(commentariesLength > 2){
+            seeMore = document.getElementById('see_more').content.cloneNode(true);
+            seeMore.querySelector('#exercises_more').textContent = `View all ${commentariesLength} comments`;
+            workout_template.querySelector('#comment').appendChild(seeMore);
+        }
         document.getElementsByClassName("home")[0].appendChild(workout_template);
     });
 }

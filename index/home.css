@@ -171,8 +171,13 @@
     margin-bottom: 20px;
 }
 #comment{
-    margin-top: 15px;
     display: flex;
+    flex-direction: column;
+    gap:10px
+}
+.comments{
+    display: flex;
+    margin-top: 15px;
     max-width: 600px;
 }
 .comment_username{
