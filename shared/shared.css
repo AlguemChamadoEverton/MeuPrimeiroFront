@@ -3,12 +3,13 @@
 }
 html, body {
     margin: 0;
-    background: #f84b4b;
     font-family: 'Inter', sans-serif;
-    width: 100%;
-    display: flex;
 }
-
+body {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
 .left_panel {
     position: sticky;
     top:0 ;
