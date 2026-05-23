@@ -188,7 +188,7 @@ if(1 === 1){
         workout_template.querySelector('.log_profile_pic').src = workout.image;
         workout_template.querySelector('#workout_log_username').textContent = workout.username;
         workout_template.querySelector('.workout_data').textContent = workout.data;
-        workout_template.querySelector('#workout_routine_name').textContent = workout.name;
+        workout_template.querySelector('.workout_routine_name').textContent = workout.name;
         workout_template.querySelector('#duration_value').textContent = workout.duration;
         workout_template.querySelector('#volume_value').textContent = workout.volume;
         workout_template.querySelector('#records_value').textContent = workout.records;
@@ -211,14 +211,8 @@ if(1 === 1){
         let commentaries = workout.commentaries;
         let commentariesLength = commentaries.length;
         let n = commentariesLength < 2 ? commentariesLength : 2;
-        for(let j = 0; j < n; j++){
-            let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
-            comment_template.querySelector('#comment_user').textContent = commentaries[j].username;
-            comment_template.querySelector('#comment_profile_pic').src = commentaries[j].image;
-            comment_template.querySelector('.time_ago').textContent = commentaries[j].time;
-            comment_template.querySelector('#comment_text').textContent = commentaries[j].commentary;
-            workout_template.querySelector('#comment').appendChild(comment_template);
-        }
+        workout_template.querySelector('#comment').appendChild(showComments(n, commentaries));
+        
         if(commentariesLength > 2){
             seeMore = document.getElementById('see_more').content.cloneNode(true);
             seeMore.querySelector('#exercises_more').textContent = `View all ${commentariesLength} comments`;
@@ -226,6 +220,36 @@ if(1 === 1){
         }
         document.getElementsByClassName("home")[0].appendChild(workout_template);
     });
+    let moreComments = document.getElementsByClassName("link");
+
+    for(let i = 0; i < moreComments.length; i++){
+        moreComments[i].addEventListener("click",(event) =>
+        {
+            data.workouts[i].commentaries //achei um jeito de pegar os comentarios, depois passar para o html usando minha função(acho que vai dar certo, para printar todos no html lá)
+            let teste = event.currentTarget;
+            let workoutDone = teste.parentElement.parentElement.parentElement.cloneNode(true);
+            workoutDone.querySelector('#exercises_summary').remove();
+            workoutDone.querySelector('.link').remove();
+            workoutDone.querySelector('#comment').after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
+            let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
+            commentOverlay.querySelector('#comment_box_overlay').appendChild(workoutDone);
+            document.body.prepend(commentOverlay);
+            console.log(workoutDone);
+        })
+    }
+}
+
+export function showComments(n, commentaries){
+    let commentsList = document.createDocumentFragment();
+    for(let j = 0; j < n; j++){
+        let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
+        comment_template.querySelector('#comment_user').textContent = commentaries[j].username;
+        comment_template.querySelector('#comment_profile_pic').src = commentaries[j].image;
+        comment_template.querySelector('.time_ago').textContent = commentaries[j].time;
+        comment_template.querySelector('#comment_text').textContent = commentaries[j].commentary;
+        commentsList.appendChild(comment_template);
+    }
+    return commentsList;
 }
 
 /*else if(response.status === 404){

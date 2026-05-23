@@ -90,14 +90,14 @@
     font-size:14px;
     color: #82888e;
 }
-#workout_overview {
+.workout_overview {
     width: 100%;
     height: 65px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-#workout_routine_name{
+.workout_routine_name{
     color: white;
 }
 .log{
@@ -173,7 +173,8 @@
 #comment{
     display: flex;
     flex-direction: column;
-    gap:10px
+    gap: 10px;
+    overflow-y: scroll;
 }
 .comments{
     display: flex;
@@ -240,6 +241,11 @@
     padding-left: 10px;
     color: #3674f0;
     font-size: 15px;
+}
+#social{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
 }
 .users{
     display: flex;
