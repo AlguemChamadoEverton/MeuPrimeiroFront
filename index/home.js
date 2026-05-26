@@ -66,6 +66,54 @@ const response = `
                     "username": "k",
                     "time": "Dec 30, 2024, 12:38PM",
                     "commentary": "tigre"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
+                    "username": "rafinha",
+                    "time": "Yesterday at 6:07 AM",
+                    "commentary": "Oiiiiiiiiiiiiiiiii"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
+                    "username": "sofi",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "legal"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
+                    "username": "b",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "macaco"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
+                    "username": "k",
+                    "time": "Dec 30, 2024, 12:38PM",
+                    "commentary": "tigre"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/rafinhapiercer-ae12c85a-1e7f-440f-b20e-e890c4a15f61-thumbnail.jpg",
+                    "username": "rafinha",
+                    "time": "Yesterday at 6:07 AM",
+                    "commentary": "Oiiiiiiiiiiiiiiiii"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
+                    "username": "sofi",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "legal"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
+                    "username": "b",
+                    "time": "Dec 25, 2024, 12:30PM",
+                    "commentary": "macaco"
+                },
+                {
+                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
+                    "username": "k",
+                    "time": "Dec 30, 2024, 12:38PM",
+                    "commentary": "tigre"
                 }
             ]
         },
@@ -225,11 +273,18 @@ if(1 === 1){
     for(let i = 0; i < moreComments.length; i++){
         moreComments[i].addEventListener("click",(event) =>
         {
-            data.workouts[i].commentaries //achei um jeito de pegar os comentarios, depois passar para o html usando minha função(acho que vai dar certo, para printar todos no html lá)
+            let allComments = data.workouts[i].commentaries; //achei um jeito de pegar os comentarios, depois passar para o html usando minha função(acho que vai dar certo, para printar todos no html lá)
+            
+            
             let teste = event.currentTarget;
             let workoutDone = teste.parentElement.parentElement.parentElement.cloneNode(true);
             workoutDone.querySelector('#exercises_summary').remove();
             workoutDone.querySelector('.link').remove();
+            let commentList = workoutDone.querySelector('#comment');
+            while(commentList.firstChild) commentList.removeChild(commentList.firstChild);
+            
+            workoutDone.querySelector('#comment').appendChild(showComments(allComments.length, allComments));
+            
             workoutDone.querySelector('#comment').after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
             let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
             commentOverlay.querySelector('#comment_box_overlay').appendChild(workoutDone);
