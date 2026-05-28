@@ -269,31 +269,35 @@ if(1 === 1){
         document.getElementsByClassName("home")[0].appendChild(workout_template);
     });
     let moreComments = document.getElementsByClassName("link");
-
+    const body = document.body;
     for(let i = 0; i < moreComments.length; i++){
         moreComments[i].addEventListener("click",(event) =>
         {
-            let allComments = data.workouts[i].commentaries; //achei um jeito de pegar os comentarios, depois passar para o html usando minha função(acho que vai dar certo, para printar todos no html lá)
-            
-            
-            let teste = event.currentTarget;
-            let workoutDone = teste.parentElement.parentElement.parentElement.cloneNode(true);
+            let allComments = data.workouts[i].commentaries;
+            let moreComments = event.currentTarget;
+            let workoutDone = moreComments.parentElement.parentElement.parentElement.cloneNode(true);
             workoutDone.querySelector('#exercises_summary').remove();
             workoutDone.querySelector('.link').remove();
             let commentList = workoutDone.querySelector('#comment');
             while(commentList.firstChild) commentList.removeChild(commentList.firstChild);
-            
-            workoutDone.querySelector('#comment').appendChild(showComments(allComments.length, allComments));
-            
-            workoutDone.querySelector('#comment').after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
+            commentList.style.overflowY = "scroll";
+            commentList.appendChild(showComments(allComments.length, allComments));
+            commentList.after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
             let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
             commentOverlay.querySelector('#comment_box_overlay').appendChild(workoutDone);
-            document.body.prepend(commentOverlay);
-            console.log(workoutDone);
+            body.prepend(commentOverlay);
+            document.getElementById("comment_box_background").addEventListener("click", (event) => {
+                body.querySelector('.overlay').remove();
+            })
         })
     }
 }
-
+else if(response.status === 404){
+    noActivity.style.display = "";
+}
+else{
+    noActivity.style.display = "";
+}
 export function showComments(n, commentaries){
     let commentsList = document.createDocumentFragment();
     for(let j = 0; j < n; j++){
@@ -306,10 +310,3 @@ export function showComments(n, commentaries){
     }
     return commentsList;
 }
-
-/*else if(response.status === 404){
-    noActivity.style.display = "";
-}
-else{
-    noActivity.style.display = "";
-}*/
