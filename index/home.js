@@ -273,11 +273,13 @@ if(1 === 1){
     for(let i = 0; i < moreComments.length; i++){
         moreComments[i].addEventListener("click",(event) =>
         {
+            body.style.overflowY = "hidden";
             let allComments = data.workouts[i].commentaries;
             let moreComments = event.currentTarget;
             let workoutDone = moreComments.parentElement.parentElement.parentElement.cloneNode(true);
             workoutDone.querySelector('#exercises_summary').remove();
             workoutDone.querySelector('.link').remove();
+            workoutDone.prepend(document.getElementById("close_scroll").content.cloneNode(true));
             let commentList = workoutDone.querySelector('#comment');
             while(commentList.firstChild) commentList.removeChild(commentList.firstChild);
             commentList.style.overflowY = "scroll";
@@ -286,9 +288,8 @@ if(1 === 1){
             let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
             commentOverlay.querySelector('#comment_box_overlay').appendChild(workoutDone);
             body.prepend(commentOverlay);
-            document.getElementById("comment_box_background").addEventListener("click", (event) => {
-                body.querySelector('.overlay').remove();
-            })
+            document.getElementById("comment_box_background").addEventListener("click", closeOverlay);
+            workoutDone.querySelector("#x_button").addEventListener("click", closeOverlay);
         })
     }
 }
@@ -309,4 +310,9 @@ export function showComments(n, commentaries){
         commentsList.appendChild(comment_template);
     }
     return commentsList;
+}
+
+export function closeOverlay(){
+    document.body.querySelector('.overlay').remove();
+    document.body.style.overflowY = "scroll";
 }

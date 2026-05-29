@@ -69,6 +69,7 @@
     flex-direction: column;
     margin-top: 20px;
     gap: 20px;
+    position: relative;
 }
 .log_profile_pic{
     width: 50px;
@@ -135,7 +136,7 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    inset: 0px;
+    z-index: 1000;
 }
 #comment_box_overlay{
     background-color: #191a1c;
@@ -143,7 +144,7 @@
     max-width: 570px;
     min-height:400px;
     max-height: 900px;
-    z-index: 2;
+    z-index: 1001;
     border-radius: 20px;
     border: solid;
     border-width: 1px;
@@ -154,13 +155,14 @@
     display: flex;
     flex-direction: column;
     gap:20px
+    
 }
 #comment_box_background{
     position: absolute;
     background-color: black;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 1000;
     opacity: 20%
 }
 .exercise{
