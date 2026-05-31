@@ -1,5 +1,6 @@
 import Cookies from "https://esm.sh/universal-cookie";
 
+let response;
 const url = "http://localhost:5255/";
 let cookies = new Cookies();
 const token = cookies.get('jwt_authorization');
@@ -12,7 +13,7 @@ const token = cookies.get('jwt_authorization');
     },
 }) codigo oficial*/
 
-const response = `
+response = `
 {
     "workouts": 
     [
@@ -35,6 +36,10 @@ const response = `
                 {
                     "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
                     "name": "Squat"
+                },
+                {
+                    "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
+                    "name": "Bench Press"
                 },
                 {
                     "image": "https://barbend.com/wp-content/uploads/2025/01/Sitko-1.jpg",
@@ -230,6 +235,7 @@ if(1 === 1){
     let data = JSON.parse(response);
     let workout_template = document.getElementById("workout").content.cloneNode(true);
     let exercises;
+    let seeMoreEx;
     let seeMore;
     data.workouts.forEach(workout => {
         workout_template = document.getElementById("workout").content.cloneNode(true);
@@ -252,9 +258,9 @@ if(1 === 1){
             workout_template.querySelector('#exercises_summary').appendChild(exercise_template);
         }
         if(exerciseLength > 3){
-            seeMore = document.getElementById('see_more').content.cloneNode(true);
-            seeMore.querySelector('#exercises_more').textContent = `See ${exerciseLength-3} more exercises`;
-            workout_template.querySelector('#exercises_summary').appendChild(seeMore);
+            seeMoreEx = document.getElementById('see_more_ex').content.cloneNode(true);
+            seeMoreEx.querySelector('#exercises_more_ex').textContent = `See ${exerciseLength-3} more exercises`;
+            workout_template.querySelector('#exercises_summary').appendChild(seeMoreEx);
         }
         let commentaries = workout.commentaries;
         let commentariesLength = commentaries.length;
@@ -282,7 +288,7 @@ if(1 === 1){
             workoutDone.prepend(document.getElementById("close_scroll").content.cloneNode(true));
             let commentList = workoutDone.querySelector('#comment');
             while(commentList.firstChild) commentList.removeChild(commentList.firstChild);
-            commentList.style.overflowY = "scroll";
+            if(allComments.length > 7) commentList.style.overflowY = "scroll";
             commentList.appendChild(showComments(allComments.length, allComments));
             commentList.after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
             let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
@@ -290,14 +296,67 @@ if(1 === 1){
             body.prepend(commentOverlay);
             document.getElementById("comment_box_background").addEventListener("click", closeOverlay);
             workoutDone.querySelector("#x_button").addEventListener("click", closeOverlay);
+            checkCommentInput();
         })
     }
+    checkCommentInput();
 }
 else if(response.status === 404){
     noActivity.style.display = "";
 }
 else{
     noActivity.style.display = "";
+}
+export function checkCommentInput(){
+    let postButtons = document.getElementsByClassName("post_comment");
+    for(let k = 0; k < postButtons.length; k++){
+        let inputComment = postButtons[k].parentElement.querySelector('#comentario');
+        inputComment.addEventListener("input", (event) => {
+            let inputComment = event.currentTarget.value;
+            let postStyle = postButtons[k].style;
+            if(inputComment.length > 0) {
+                postStyle.cursor = "pointer";
+                postStyle.color = "blue";
+                postButtons[k].addEventListener("click", postComment)
+
+            }
+            else{
+                postButtons[k].removeEventListener("click", postComment)
+                postStyle.cursor = "";
+                postStyle.color = "gray";
+            }
+        })
+    }
+}
+
+export async function postComment(event){
+        //preciso criar um fetch para o front e, ao mesmo tempo, adicionar o valor no html para reproduzir sem precisar recarregar a pagina
+        //para fazer isso posso criar um objeto diretamente (não sei como faz) ou posso colocar direto no mock(ñão sei como faz)
+        //pensei em criar variaveis e usar tanto para fazer o fetch quanto para exbir no html
+        let postButton = event.currentTarget;
+        let commentary = postButton.parentElement.querySelector("#comentario").value;
+        /*response = await fetch(`${url}commentary`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                commentary: `${commentary}`
+            })
+        })desativado para mock*/
+        if(1===1){
+            let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
+
+            comment_template.querySelector("#comment_profile_pic").src = document.getElementById("float_panel_pic").src;
+            comment_template.querySelector("#comment_user").textContent = document.querySelector(".user_name").textContent;
+            comment_template.querySelector("#comment_text").textContent = commentary;
+            
+            data
+            event.currentTarget.parentElement.parentElement.querySelector('#comment').appendChild(comment_template); //usar para adicionar comentário depois
+            
+        }
+        
 }
 export function showComments(n, commentaries){
     let commentsList = document.createDocumentFragment();
