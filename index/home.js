@@ -345,14 +345,21 @@ export async function postComment(event){
                 commentary: `${commentary}`
             })
         })desativado para mock*/
+        let response = `
+        {
+            "image": "https://i.pinimg.com/736x/b4/0c/c5/b40cc599980b8b0a944d304e205c6fa0.jpg",
+            "username": "pl",
+            "commentary": "macaco"
+        }`
+        let data = JSON.parse(response);
+        
         if(1===1){
             let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
 
-            comment_template.querySelector("#comment_profile_pic").src = document.getElementById("float_panel_pic").src;
-            comment_template.querySelector("#comment_user").textContent = document.querySelector(".user_name").textContent;
-            comment_template.querySelector("#comment_text").textContent = commentary;
+            comment_template.querySelector("#comment_profile_pic").src = data.image;
+            comment_template.querySelector("#comment_user").textContent = data.username;
+            comment_template.querySelector("#comment_text").textContent = data.commentary;
             
-            data
             event.currentTarget.parentElement.parentElement.querySelector('#comment').appendChild(comment_template); //usar para adicionar comentário depois
             
         }
