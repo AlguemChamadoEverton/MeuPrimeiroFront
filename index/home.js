@@ -150,24 +150,6 @@ response = `
                     "username": "rafi",
                     "time": "Yesterday at 6:07 AM",
                     "commentary": "Oiiiiiiiiiiiiiiiii"
-                },
-                {
-                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/sofi_brandao-bb65b81c-44df-4ae9-9937-8b696da82a93.jpg",
-                    "username": "sofi",
-                    "time": "Dec 25, 2024, 12:30PM",
-                    "commentary": "legal"
-                },
-                {
-                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
-                    "username": "b",
-                    "time": "Dec 25, 2024, 12:30PM",
-                    "commentary": "macaco"
-                },
-                {
-                    "image": "https://d2l9nsnmtah87f.cloudfront.net/profile-images/yllanao-60d81e5a-f969-431d-99a4-4c52e4f8ee9f.jpg",
-                    "username": "k",
-                    "time": "Dec 30, 2024, 12:38PM",
-                    "commentary": "tigre"
                 }
             ]
         },
@@ -275,30 +257,21 @@ if(1 === 1){
         document.getElementsByClassName("home")[0].appendChild(workout_template);
     });
     let moreComments = document.getElementsByClassName("link");
-    const body = document.body;
-    for(let i = 0; i < moreComments.length; i++){
-        moreComments[i].addEventListener("click",(event) =>
-        {
-            body.style.overflowY = "hidden";
-            let allComments = data.workouts[i].commentaries;
-            let moreComments = event.currentTarget;
-            let workoutDone = moreComments.parentElement.parentElement.parentElement.cloneNode(true);
-            workoutDone.querySelector('#exercises_summary').remove();
-            workoutDone.querySelector('.link').remove();
-            workoutDone.prepend(document.getElementById("close_scroll").content.cloneNode(true));
-            let commentList = workoutDone.querySelector('#comment');
-            while(commentList.firstChild) commentList.removeChild(commentList.firstChild);
-            if(allComments.length > 7) commentList.style.overflowY = "scroll";
-            commentList.appendChild(showComments(allComments.length, allComments));
-            commentList.after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
-            let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
-            commentOverlay.querySelector('#comment_box_overlay').appendChild(workoutDone);
-            body.prepend(commentOverlay);
-            document.getElementById("comment_box_background").addEventListener("click", closeOverlay);
-            workoutDone.querySelector("#x_button").addEventListener("click", closeOverlay);
-            checkCommentInput();
-        })
-    }
+    //02/06 - preciso finalizar essa logica esse for vai ter que se transformar em foreach porque o moreComments não aceita foreach
+    moreComments.forEach(button => {
+        let workoutLogs = document.getElementsByClassName("workout_log");
+        let actualLog = button.parentElement.parentElement.parentElement.parentElement;
+        for(let o; o < workoutLogs.length ; o++){
+            if(actualLog === workoutLogs[o]){
+                button.allComments = data.workouts[o].commentaries;
+            }
+        }
+        button.addEventListener("click", showCommentOverlay);
+    })
+    /*for(let i = 0; i < moreComments.length; i++){
+        moreComments[i].allComments = data.workouts[i].commentaries;
+        moreComments[i].addEventListener("click", showCommentOverlay);
+    }*/
     checkCommentInput();
 }
 else if(response.status === 404){
@@ -353,17 +326,37 @@ export async function postComment(event){
         }`
         let data = JSON.parse(response);
         
-        if(1===1){
+        if(1===1) {
             let comment_template = document.getElementById("tpl_comment").content.cloneNode(true);
 
             comment_template.querySelector("#comment_profile_pic").src = data.image;
             comment_template.querySelector("#comment_user").textContent = data.username;
             comment_template.querySelector("#comment_text").textContent = data.commentary;
-            
+
             event.currentTarget.parentElement.parentElement.querySelector('#comment').appendChild(comment_template); //usar para adicionar comentário depois
-            
+
         }
-        
+}
+export function showCommentOverlay(event){
+    const body = document.body;
+    body.style.overflowY = "hidden";
+    let moreComments = event.currentTarget;
+    let allComments = moreComments.allComments;
+    let workoutDone = moreComments.parentElement.parentElement.parentElement.cloneNode(true);
+    workoutDone.querySelector('#exercises_summary').remove();
+    workoutDone.querySelector('.link').remove();
+    workoutDone.prepend(document.getElementById("close_scroll").content.cloneNode(true));
+    let commentList = workoutDone.querySelector('#comment');
+    while(commentList.firstChild) commentList.removeChild(commentList.firstChild);
+    if(allComments.length > 7) commentList.style.overflowY = "scroll";
+    commentList.appendChild(showComments(allComments.length, allComments));
+    commentList.after(workoutDone.querySelector('.break_line'),workoutDone.querySelector('#reactions'));
+    let commentOverlay = document.getElementById("comment_overlay").content.cloneNode(true);
+    commentOverlay.querySelector('#comment_box_overlay').appendChild(workoutDone);
+    body.prepend(commentOverlay);
+    document.getElementById("comment_box_background").addEventListener("click", closeOverlay);
+    workoutDone.querySelector("#x_button").addEventListener("click", closeOverlay);
+    checkCommentInput();
 }
 export function showComments(n, commentaries){
     let commentsList = document.createDocumentFragment();
