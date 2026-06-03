@@ -258,21 +258,18 @@ if(1 === 1){
     });
     let moreComments = document.getElementsByClassName("link");
     //02/06 - preciso finalizar essa logica esse for vai ter que se transformar em foreach porque o moreComments não aceita foreach
-    moreComments.forEach(button => {
+    for(let button of moreComments){
         let workoutLogs = document.getElementsByClassName("workout_log");
         let actualLog = button.parentElement.parentElement.parentElement.parentElement;
-        for(let o; o < workoutLogs.length ; o++){
-            if(actualLog === workoutLogs[o]){
+        for(let o=0; o < workoutLogs.length ; o++){
+            if(actualLog.isEqualNode(workoutLogs[o])){
+                console.log('aqui foi em');
                 button.allComments = data.workouts[o].commentaries;
             }
         }
         button.addEventListener("click", showCommentOverlay);
-    })
-    /*for(let i = 0; i < moreComments.length; i++){
-        moreComments[i].allComments = data.workouts[i].commentaries;
-        moreComments[i].addEventListener("click", showCommentOverlay);
-    }*/
-    checkCommentInput();
+    }
+    checkCommentInput(data.workouts);
 }
 else if(response.status === 404){
     noActivity.style.display = "";
@@ -280,7 +277,7 @@ else if(response.status === 404){
 else{
     noActivity.style.display = "";
 }
-export function checkCommentInput(){
+export function checkCommentInput(data){
     let postButtons = document.getElementsByClassName("post_comment");
     for(let k = 0; k < postButtons.length; k++){
         let inputComment = postButtons[k].parentElement.querySelector('#comentario');
